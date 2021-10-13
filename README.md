@@ -15,7 +15,7 @@ Scripts for stresstesting the ZNN testnet
 | USE_SCHEDULED_MODE | Toggles scheduled mode on/off. Scheduled mode runs the script at a specific time (max. +30s) for a defined number of seconds.  |
 | START_TIME | Start time for scheduled mode. Format: YYYY-MM-DD_HH-MM (must be set in local time of your operating system) |
 | DURATION_IN_SECS | Duration of script execution in seconds for scheduled mode |
-| KEYSTORE | Name of the keystore. Use `znn-cli wallet.list` to see all available keystores. Note: Apparently default keystores are named like `Instance of 'Future<Address?>_1234567890123`. Make sure to escape the quotes with backslash (as example in the scripts). |
+| KEYSTORE | Name of the keystore. Use `znn-cli wallet.list` to see all available keystores. Note: Apparently default keystores are named like `Instance of 'Future<Address?>'_1234567890123`. Make sure to escape the quotes with backslash (as example in the scripts). |
 | PASSPHRASE | Your Syrius passphrase |
 | AMOUNT | Amount of <COIN> that will be used for the transactions |
 | COIN | Coin that will be used for the transactions, e.g. 'znn' |
