@@ -4,6 +4,7 @@ Scripts for stresstesting the ZNN testnet
 # Prerequisits
 * Download the testnet bundle for your operating system: https://testnet.znn.space/#!downloads.md
   * Make sure to run the znnd daemon for some time to update the momentums. Current momentum be checked with `znn-cli frontierMomentum`
+  * Make sure that all addresses used have enough plasma fused
 * Python 3.7.x
 
 # Script Configuration
