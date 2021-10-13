@@ -12,18 +12,18 @@ import time
 
 # Variable settings
 USE_SCHEDULED_MODE = True # Scheduled mode uses START_TIME and DURATION_IN_SECS. Otherwise script runs infinitely and must be cancelled manually
-START_TIME = '2021-10-13_08-52'
+START_TIME = '2021-10-13_09-37'
 DURATION_IN_SECS = 60
 
 PASSPRASE = ''
 AMOUNT = 1
 COIN = 'znn'
 
-ZNN_CALL = 'znn-cli'
-CMD_ZNND_START = 'znn-cli start znnd'
-CMD_RPC_ENABLE = 'znn-cli enableRPC'
-CMD_ZNND_STOP = 'znn-cli stop znnd' # Only used in scheduled mode
-CMD_RPC_DISABLE = 'znn-cli disableRPC' # Only used in scheduled mode
+ZNN_CLI = './znn-cli'
+CMD_ZNND_START = ZNN_CLI + ' start znnd'
+CMD_RPC_ENABLE = ZNN_CLI + ' enableRPC'
+CMD_ZNND_STOP = ZNN_CLI + ' stop znnd' # Only used in scheduled mode
+CMD_RPC_DISABLE = ZNN_CLI + ' disableRPC' # Only used in scheduled mode
 
 SYRIUS_ADDRESS_0 = ''
 SYRIUS_ADDRESS_1 = ''
@@ -52,14 +52,14 @@ send_commands = []
 for index_first_address, (first_in_pair, second_in_pair) in enumerate(zip(ADDRESS_LIST[::2], ADDRESS_LIST[1::2])):
     index_first_address = index_first_address * 2
     index_second_address = index_first_address + 1
-    znn_send_command_1 = f'{ZNN_CALL} send {second_in_pair} {AMOUNT} {COIN} -i {index_first_address} -p {PASSPRASE}' 
-    znn_send_command_2 = f'{ZNN_CALL} send {first_in_pair} {AMOUNT} {COIN} -i {index_second_address} -p {PASSPRASE}' 
+    znn_send_command_1 = f'{ZNN_CLI} send {second_in_pair} {AMOUNT} {COIN} -i {index_first_address} -p {PASSPRASE}' 
+    znn_send_command_2 = f'{ZNN_CLI} send {first_in_pair} {AMOUNT} {COIN} -i {index_second_address} -p {PASSPRASE}' 
     send_commands.append(znn_send_command_1)
     send_commands.append(znn_send_command_2)
     
 receive_commands = []
 for index, address in enumerate(ADDRESS_LIST):
-    receive_commands.append(f'{ZNN_CALL} receiveAll -i {index} -p {PASSPRASE}')
+    receive_commands.append(f'{ZNN_CLI} receiveAll -i {index} -p {PASSPRASE}')
 
 def run(cmd: str) -> str:
     completed = subprocess.run([cmd], capture_output=True, shell=True, text=True)
