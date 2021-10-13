@@ -15,6 +15,7 @@ USE_SCHEDULED_MODE = True # Scheduled mode uses START_TIME and DURATION_IN_SECS.
 START_TIME = '2021-10-13_09-37'
 DURATION_IN_SECS = 60
 
+KEYSTORE = 'Instance of \'Future<Address?>\'_1234567890123'
 PASSPRASE = ''
 AMOUNT = 1
 COIN = 'znn'
@@ -52,14 +53,14 @@ send_commands = []
 for index_first_address, (first_in_pair, second_in_pair) in enumerate(zip(ADDRESS_LIST[::2], ADDRESS_LIST[1::2])):
     index_first_address = index_first_address * 2
     index_second_address = index_first_address + 1
-    znn_send_command_1 = f'{ZNN_CLI} send {second_in_pair} {AMOUNT} {COIN} -i {index_first_address} -p {PASSPRASE}' 
-    znn_send_command_2 = f'{ZNN_CLI} send {first_in_pair} {AMOUNT} {COIN} -i {index_second_address} -p {PASSPRASE}' 
+    znn_send_command_1 = f'{ZNN_CLI} send {second_in_pair} {AMOUNT} {COIN} -i {index_first_address} -p {PASSPRASE} -k "{KEYSTORE}"' 
+    znn_send_command_2 = f'{ZNN_CLI} send {first_in_pair} {AMOUNT} {COIN} -i {index_second_address} -p {PASSPRASE} -k "{KEYSTORE}"' 
     send_commands.append(znn_send_command_1)
     send_commands.append(znn_send_command_2)
     
 receive_commands = []
 for index, address in enumerate(ADDRESS_LIST):
-    receive_commands.append(f'{ZNN_CLI} receiveAll -i {index} -p {PASSPRASE}')
+    receive_commands.append(f'{ZNN_CLI} receiveAll -i {index} -p {PASSPRASE} -k "{KEYSTORE}"')
 
 def run(cmd: str) -> str:
     completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True, text=True)
