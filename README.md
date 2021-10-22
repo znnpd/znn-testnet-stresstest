@@ -21,3 +21,5 @@ Scripts for stresstesting the ZNN testnet
 | COIN | Coin that will be used for the transactions, e.g. 'znn' |
 | ZNN_CLI | Path to the znn-cli executable |
 | SYRIUS_ADDRESS_X | Some of your addresses in Syrius wallet, recommended number is 10 |
+# Run the script
+1. `python3 bin/stresstest_linux_1-0-0.py`
